@@ -8,19 +8,22 @@
     "dev": "nodemon server.ts",
     "basic": "nodemon basic.ts",
     "db": "nodemon ./src/Model/index.ts"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@types/sequelize": "^4.28.20",
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.15.3",
     "nodemon": "^3.1.10",
     "sequelize": "^6.37.7",
