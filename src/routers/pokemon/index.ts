@@ -1,19 +1,17 @@
 import express, { Router } from "express";
 import pokemonController from "../../controllers/pokemon/pokemonController";
-import auth from "../../middleware/auth";
+import authUser from "../../middleware/authUser";
 
 const pokemonRouter: Router = express.Router();
 
-pokemonRouter.post('/pokemon', pokemonController.createPokemon)
+pokemonRouter.post('/pokemon', authUser, pokemonController.createPokemon);
 
-pokemonRouter.post('/pokemon/auth', pokemonController.authPokemon)
+pokemonRouter.get('/pokemons', authUser, pokemonController.getPokemons);
 
-pokemonRouter.get('/me', auth, pokemonController.getPokemon)
+pokemonRouter.get('/pokemon/me/:id', authUser, pokemonController.getPokemon);
 
-pokemonRouter.get('/me',  auth, pokemonController.getPokemons)
+pokemonRouter.patch('/pokemon/me/:id', authUser, pokemonController.updatePokemon);
 
-pokemonRouter.delete('/me', auth, pokemonController.destroyPokemon)
+pokemonRouter.delete('/pokemon/me/:id', authUser, pokemonController.destroyPokemon);
 
-pokemonRouter.patch('/me',  auth, pokemonController.updatePokemon)
-
-export default pokemonRouter
+export default pokemonRouter;

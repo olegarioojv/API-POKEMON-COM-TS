@@ -30,11 +30,6 @@ const Pokemon = connection.define<PokemonModelInterface>('pokemon', {
         type: DataTypes.DECIMAL(10,3),
         allowNull: false
     },
-    password: 
-    {
-    type: DataTypes.STRING,
-    allowNull: false,
-    },
     status:
     {
         type: DataTypes.BOOLEAN,

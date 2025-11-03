@@ -8,7 +8,6 @@ interface PokemonModelInterface extends Model {
     status: boolean;
     sexo: string;
     level: number;
-    password: string;
 }
 
 export default PokemonModelInterface;
