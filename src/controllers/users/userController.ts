@@ -9,32 +9,37 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
         const validPayLoad = createUserService.validPayLoad(req.body);
 
         if (!validPayLoad) {
-            res.status(400).json({ message: "Usuário inválido" });
+            res.status(400)
+            res.json({ message: "Usuário inválido" });
             return;
         }
 
         const userExist = await createUserService.userExist(req.body.email);
 
         if (userExist) {
-            res.status(409).json({ message: "Usuário já existente" });
+            res.status(409)
+            res.json({ message: "Usuário já existente" });
             return;
         }
 
         const newUser = await createUserService.createUserService(req.body);
 
         if (!newUser) {
-            res.status(500).json({ message: "Erro ao criar usuário" });
+            res.status(500)
+            res.json({ message: "Erro ao criar usuário" });
             return;
         }
 
-        res.status(201).json({
+        res.status(201)
+        res.json({
             message: "Usuário criado com sucesso",
             user: newUser,
         });
 
     } catch (error: any) {
         console.error("Erro ao criar usuário:", error);
-        res.status(500).json({ message: "Ocorreu um erro, tente novamente mais tarde" });
+        res.status(500)
+        res.json({ message: "Ocorreu um erro, tente novamente mais tarde" });
     }
 };
 
@@ -43,54 +48,63 @@ const authUser = async (req: Request, res: Response): Promise<void> => {
         const validPayLoad = authUserService.validPayLoad(req.body);
 
         if (!validPayLoad) {
-            res.status(400).json({ message: "Email e senha são obrigatórios" });
+            res.status(400)
+            res.json({ message: "Email e senha são obrigatórios" });
             return;
         }
 
         const user = await authUserService.authUserService(req.body.email, req.body.password);
 
         if (!user) {
-            res.status(400).json({ message: "Falha na autenticação do usuário" });
+            res.status(400)
+            res.json({ message: "Falha na autenticação do usuário" });
             return;
         }
 
         const token = authUserService.createToken(user);
 
         if (!token) {
-            res.status(500).json({ message: "Erro ao gerar token" });
+            res.status(500)
+            res.json({ message: "Erro ao gerar token" });
             return;
         }
 
-        res.status(200).json({
+        res.status(200)
+        res.json({
             message: "Usuário autenticado com sucesso",
             token
         });
 
     } catch (error: any) {
         console.error("Erro ao autenticar usuário:", error);
-        res.status(500).json({ message: "Ocorreu um erro, tente novamente mais tarde" });
+        res.status(500)
+        res.json({ message: "Ocorreu um erro, tente novamente mais tarde" });
     }
 };
 
 const getUser = async (req: Request, res: Response): Promise<void> => {
     try {
-        res.status(200).json({
+        res.status(200)
+        res.json({
             message: req.user
         });
     } catch (error: any) {
         console.error("Erro ao obter usuário:", error);
-        res.status(500).json({ message: "Ocorreu um erro, tente novamente mais tarde" });
+        res.status(500)
+        res.json({ message: "Ocorreu um erro, tente novamente mais tarde" });
     }
 };
 
 const getUsers = async (req: Request, res: Response): Promise<void> => {
     try {
-        res.status(200).json({
+        res.status(200)
+        res.json({
             message: "Usuários obtidos com sucesso"
         });
     } catch (error: any) {
         console.error("Erro ao obter usuários:", error);
-        res.status(500).json({ message: "Ocorreu um erro, tente novamente mais tarde" });
+        res.status(500)
+        res.json({ message: "Ocorreu um erro, tente novamente mais tarde" });
     }
 };
 
@@ -99,15 +113,18 @@ const destroyUser = async (req: Request, res: Response): Promise<void> => {
         const destroyed = await destroyUserService.destroy(req.user.id);
 
         if (!destroyed) {
-            res.status(400).json({ message: "Não foi possível deletar o usuário" });
+            res.status(400)
+            res.json({ message: "Não foi possível deletar o usuário" });
             return;
         }
 
-        res.status(200).json({ message: "Usuário deletado com sucesso" });
+        res.status(200)
+        res.json({ message: "Usuário deletado com sucesso" });
 
     } catch (error: any) {
         console.error("Erro ao deletar usuário:", error);
-        res.status(500).json({ message: "Ocorreu um erro, tente novamente mais tarde" });
+        res.status(500)
+        res.json({ message: "Ocorreu um erro, tente novamente mais tarde" });
     }
 };
 
@@ -116,15 +133,18 @@ const updateUser = async (req: Request, res: Response): Promise<void> => {
         const update = await updateUserService.updateUser(req.body, req.user.id);
 
         if (!update) {
-            res.status(400).json({ message: "Não foi possível atualizar o usuário" });
+            res.status(400)
+            res.json({ message: "Não foi possível atualizar o usuário" });
             return;
         }
 
-        res.status(200).json({ message: "Usuário atualizado com sucesso" });
+        res.status(200)
+        res.json({ message: "Usuário atualizado com sucesso" });
 
     } catch (error: any) {
         console.error("Erro ao atualizar usuário:", error);
-        res.status(500).json({ message: "Ocorreu um erro, tente novamente mais tarde" });
+        res.status(500)
+        res.json({ message: "Ocorreu um erro, tente novamente mais tarde" });
     }
 };
 

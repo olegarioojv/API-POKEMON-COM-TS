@@ -1,11 +1,8 @@
 import PokemonModelInterface from "../../Model/Pokemon/Interface/PokemonModelInterface";
 import pokemonRepository from "../../Model/pokemonRepository";
 
-// Função principal que cria o Pokémon
-const createPokemonService = async (
-    pokemon: Partial<PokemonModelInterface>,
-    userId: number // <- adiciona o ID do usuário autenticado
-): Promise<PokemonModelInterface | null> => {
+
+const createPokemonService = async (pokemon: Partial<PokemonModelInterface>, userId: number):Promise<PokemonModelInterface | null> => {
     try {
         if (
             !pokemon.name ||
@@ -28,7 +25,7 @@ const createPokemonService = async (
     }
 };
 
-// Verifica se o Pokémon já existe
+
 const pokemonExist = async (name: string): Promise<boolean> => {
     const pokemon = await pokemonRepository.pokemonExist(name);
     return !!pokemon;
