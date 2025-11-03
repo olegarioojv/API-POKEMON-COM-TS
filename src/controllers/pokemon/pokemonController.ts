@@ -7,6 +7,7 @@ import destroyPokemonService from "../../services/pokemon/destroyPokemonService"
 const createPokemon = async (req: Request, res: Response): Promise<void> => {
     try {
         const { name, nature, tipo, sexo, level } = req.body;
+        const userId = req.user.id; // pega o userId do middleware authUser
 
         // Verifica se já existe
         const exists = await pokemonRepository.pokemonExist(name);
@@ -15,8 +16,15 @@ const createPokemon = async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        // Cria o Pokémon
-        const newPokemon = await pokemonRepository.create({ name, nature, tipo, sexo, level });
+        // Cria o Pokémon associado ao usuário
+        const newPokemon = await pokemonRepository.create({ 
+            name, 
+            nature, 
+            tipo, 
+            sexo, 
+            level, 
+            userId 
+        });
 
         if (!newPokemon) {
             res.status(500).json({ message: "Erro ao criar Pokemon" });
@@ -29,6 +37,7 @@ const createPokemon = async (req: Request, res: Response): Promise<void> => {
         res.status(500).json({ message: "Ocorreu um erro, tente novamente mais tarde" });
     }
 };
+
 
 // Obter todos os Pokémons
 const getPokemons = async (_req: Request, res: Response): Promise<void> => {

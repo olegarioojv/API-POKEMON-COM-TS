@@ -1,16 +1,17 @@
 import {DataTypes} from "sequelize";
 import connection from "../../config/database";
 import PokemonModelInterface from "./Interface/PokemonModelInterface";
+import User from "../User/User";
 
 
 const Pokemon = connection.define<PokemonModelInterface>('pokemon', {
- 
+
     name:
     {
         type: DataTypes.STRING,
         allowNull: false
     },
-    nature: 
+    nature:
     {
         type: DataTypes.STRING,
         allowNull: false
@@ -35,7 +36,18 @@ const Pokemon = connection.define<PokemonModelInterface>('pokemon', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true
-    }
-});
+    },
+    userId: { // <-- nova coluna
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+        model: User,
+        key: "id",
+        },
+    },
+    });
+
+    Pokemon.belongsTo(User, { foreignKey: "userId" });
+    User.hasMany(Pokemon, { foreignKey: "userId" });
 
 export default Pokemon;

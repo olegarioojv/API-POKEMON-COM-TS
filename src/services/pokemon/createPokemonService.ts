@@ -1,73 +1,40 @@
-import Pokemon from "../../Model/Pokemon/Pokemon";
 import PokemonModelInterface from "../../Model/Pokemon/Interface/PokemonModelInterface";
+import pokemonRepository from "../../Model/pokemonRepository";
 
-const create = async (pokemon: Partial<PokemonModelInterface>): Promise<PokemonModelInterface> => {
+// Função principal que cria o Pokémon
+const createPokemonService = async (
+    pokemon: Partial<PokemonModelInterface>,
+    userId: number // <- adiciona o ID do usuário autenticado
+): Promise<PokemonModelInterface | null> => {
     try {
-        const newPokemon = await (Pokemon as any).create(pokemon);
+        if (
+            !pokemon.name ||
+            !pokemon.nature ||
+            !pokemon.tipo ||
+            !pokemon.sexo ||
+            !pokemon.level
+        ) {
+            return null;
+        }
+
+        const newPokemon = await pokemonRepository.create({
+            ...pokemon,
+            userId // <- vincula o Pokémon ao usuário
+        });
+
         return newPokemon;
     } catch (error: any) {
         throw new Error(error);
     }
 };
 
-const findByName = async (name: string): Promise<PokemonModelInterface | null> => {
-    try {
-        const pokemon = await (Pokemon as any).findOne({
-            where: { name }
-        });
-        return pokemon;
-    } catch (error: any) {
-        throw new Error(error);
-    }
-};
-
-const findById = async (id: number): Promise<PokemonModelInterface | null> => {
-    try {
-        const pokemon = await (Pokemon as any).findOne({
-            where: { id }
-        });
-        return pokemon;
-    } catch (error: any) {
-        throw new Error(error);
-    }
-};
-
-const destroy = async (id: number): Promise<boolean> => {
-    try {
-        const deleted = await Pokemon.destroy({
-            where: { id }
-        });
-        return deleted > 0;
-    } catch (error: any) {
-        throw new Error(error);
-    }
-};
-
-const update = async (pokemonData: Partial<PokemonModelInterface>, id: number): Promise<boolean> => {
-    try {
-        const [rowsUpdated] = await Pokemon.update(pokemonData, {
-            where: { id }
-        });
-        return rowsUpdated > 0;
-    } catch (error: any) {
-        throw new Error(error);
-    }
-};
-
-const findAll = async (): Promise<PokemonModelInterface[]> => {
-    try {
-        const pokemons = await Pokemon.findAll();
-        return pokemons;
-    } catch (error: any) {
-        throw new Error(error);
-    }
+// Verifica se o Pokémon já existe
+const pokemonExist = async (name: string): Promise<boolean> => {
+    const pokemon = await pokemonRepository.pokemonExist(name);
+    return !!pokemon;
 };
 
 export default {
-    create,
-    findByName,
-    findById, 
-    destroy,
-    update,
-    findAll
+    createPokemonService,
+    pokemonExist,
 };

@@ -1,15 +1,18 @@
 import PokemonModelInterface from "../../Model/Pokemon/Interface/PokemonModelInterface"
-import pokemonRepository from "../../Model/pokemonRepository"
+import Pokemon from "../../Model/Pokemon/Pokemon";
 
 
-const updatePokemon = async (pokemon: Partial<PokemonModelInterface>, id:number) => {
-    
+
+const updatePokemon = async (pokemonData: Partial<PokemonModelInterface>, id: number): Promise<boolean> => {
     try {
-        return await pokemonRepository.update(pokemon, id)
+        const [rowsUpdated] = await Pokemon.update(pokemonData, {
+            where: { id }
+        });
+        return rowsUpdated > 0;
     } catch (error: any) {
         throw new Error(error);
     }
-}
+};
 
 export default {
     updatePokemon
