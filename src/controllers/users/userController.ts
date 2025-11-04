@@ -3,6 +3,7 @@ import authUserService from "../../services/user/authUserService";
 import destroyUserService from "../../services/user/destroyUserService";
 import updateUserService from "../../services/user/updateUserService";
 import createUserService from "../../services/user/createUserService";
+import userRepository from "../../Model/userRepository";
 
 const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -97,9 +98,12 @@ const getUser = async (req: Request, res: Response): Promise<void> => {
 
 const getUsers = async (req: Request, res: Response): Promise<void> => {
     try {
+
+        const users = await userRepository.findAll();
         res.status(200)
         res.json({
-            message: "Usuários obtidos com sucesso"
+            message: "Usuários obtidos com sucesso",
+            users
         });
     } catch (error: any) {
         console.error("Erro ao obter usuários:", error);

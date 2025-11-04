@@ -6,6 +6,7 @@ const createPokemonService = async (pokemon: Partial<PokemonModelInterface>, use
     try {
         if (
             !pokemon.name ||
+            !pokemon.price ||
             !pokemon.nature ||
             !pokemon.tipo ||
             !pokemon.sexo ||

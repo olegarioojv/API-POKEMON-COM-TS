@@ -6,7 +6,7 @@ const pokemonRouter: Router = express.Router();
 
 pokemonRouter.post('/pokemon', authUser, pokemonController.createPokemon);
 
-pokemonRouter.get('/pokemons', authUser, pokemonController.getPokemons);
+pokemonRouter.get('/pokemons', pokemonController.getPokemons);
 
 pokemonRouter.get('/pokemon/me/:id', authUser, pokemonController.getPokemon);
 

@@ -11,6 +11,10 @@ const Pokemon = connection.define<PokemonModelInterface>('pokemon', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    price: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     nature:
     {
         type: DataTypes.STRING,

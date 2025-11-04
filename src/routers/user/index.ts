@@ -10,7 +10,7 @@ userRouter.post('/user/auth', userController.authUser);
 
 userRouter.get('/user/me', authUser, userController.getUser);
 
-userRouter.get('/users', authUser, userController.getUsers);
+userRouter.get('/users', userController.getUsers);
 
 userRouter.delete('/user/me', authUser, userController.destroyUser);
 

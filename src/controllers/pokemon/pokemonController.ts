@@ -6,7 +6,7 @@ import destroyPokemonService from "../../services/pokemon/destroyPokemonService"
 // Criar Pokémon
 const createPokemon = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { name, nature, tipo, sexo, level } = req.body;
+        const { name, price, nature, tipo, sexo, level } = req.body;
         const userId = req.user.id; // pega o userId do middleware authUser
 
         // Verifica se já existe
@@ -20,6 +20,7 @@ const createPokemon = async (req: Request, res: Response): Promise<void> => {
         // Cria o Pokémon associado ao usuário
         const newPokemon = await pokemonRepository.create({ 
             name, 
+            price,
             nature, 
             tipo, 
             sexo, 

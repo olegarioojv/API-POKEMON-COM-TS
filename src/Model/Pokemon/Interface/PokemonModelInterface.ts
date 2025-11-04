@@ -3,6 +3,7 @@ import {Model} from "sequelize";
 interface PokemonModelInterface extends Model {
     id: number;
     name: string;
+    price: string;
     nature: string;
     tipo: string;
     status: boolean;
