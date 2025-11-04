@@ -21,6 +21,17 @@ const findById = async (id: number): Promise<PokemonModelInterface | null> => {
     }
 };
 
+const findByName = async (name: string,findById: object): Promise<PokemonModelInterface | null> => {
+    try {
+        const pokemon = await (Pokemon as any).findOne({
+            where: { name }
+        });
+        return pokemon;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+};
+
 const findAll = async (): Promise<PokemonModelInterface[]> => {
     try {
         const pokemons = await Pokemon.findAll();
@@ -52,16 +63,17 @@ const destroy = async (id: number): Promise<boolean> => {
     }
 };
 
-const pokemonExist = async (name: string): Promise<boolean> => {
-    try {
-        const pokemon = await (Pokemon as any).findOne({
-            where: { name }
-        });
-        return !!pokemon;
-    } catch (error: any) {
-        throw new Error(error);
-    }
+const pokemonExist = async (name: string, userId: number): Promise<boolean> => {
+  try {
+    const pokemon = await (Pokemon as any).findOne({
+      where: { name, userId } 
+    });
+    return !!pokemon; 
+  } catch (error: any) {
+    throw new Error(error.message || "Erro ao verificar se o Pokémon existe");
+  }
 };
+
 
 export default {
     create,
@@ -69,5 +81,6 @@ export default {
     findAll,
     update,
     destroy,
-    pokemonExist
+    pokemonExist,
+    findByName
 };

@@ -2,20 +2,31 @@ import { Request, Response } from "express";
 import pokemonRepository from "../../Model/pokemonRepository";
 import updatePokemonService from "../../services/pokemon/updatePokemonService";
 import destroyPokemonService from "../../services/pokemon/destroyPokemonService";
+import createPokemonService from "../../services/pokemon/createPokemonService";
 
 // Criar Pokémon
 const createPokemon = async (req: Request, res: Response): Promise<void> => {
     try {
+
         const { name, price, nature, tipo, sexo, level } = req.body;
         const userId = req.user.id; // pega o userId do middleware authUser
 
         // Verifica se já existe
-        const exists = await pokemonRepository.pokemonExist(name);
+        const exists = await pokemonRepository.pokemonExist(name, userId);
         if (exists) {
             res.status(409)
             res.json({ message: "Pokemon já existente" });
             return;
         }
+
+        const { valido, faltando } = createPokemonService.validPayload(req.body);
+        if (!valido) {
+            res.status(400).json({
+                message: `Está faltando as seguintes informações: ${(faltando ?? []).join(", ")}`
+            });
+            return;
+        }
+        
 
         // Cria o Pokémon associado ao usuário
         const newPokemon = await pokemonRepository.create({ 
@@ -35,7 +46,8 @@ const createPokemon = async (req: Request, res: Response): Promise<void> => {
         }
 
         res.status(201)
-        res.json({ message: "Pokemon criado com sucesso", pokemon: newPokemon });
+        res.json({ message: "Pokemon criado com sucesso", 
+            pokemon: newPokemon });
 
     } catch (error: any) {
         console.error("Erro ao criar Pokémon:", error);
