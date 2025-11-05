@@ -1,5 +1,5 @@
-import Pokemon from "./Pokemon/Pokemon";
-import PokemonModelInterface from "./Pokemon/Interface/PokemonModelInterface";
+import Pokemon from "./Pokemon";
+import PokemonModelInterface from "./Interface/PokemonModelInterface";
 
 const create = async (pokemon: Partial<PokemonModelInterface>): Promise<PokemonModelInterface> => {
     try {
@@ -32,9 +32,13 @@ const findByName = async (name: string,findById: object): Promise<PokemonModelIn
     }
 };
 
-const findAll = async (): Promise<PokemonModelInterface[]> => {
+const findAll = async (where: object = {}): Promise<PokemonModelInterface[]> => {
     try {
-        const pokemons = await Pokemon.findAll();
+        const pokemons = await Pokemon.findAll({
+            where: {
+                ...where
+            }
+        });
         return pokemons;
     } catch (error: any) {
         throw new Error(error);

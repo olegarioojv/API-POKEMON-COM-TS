@@ -1,6 +1,6 @@
 import { where } from "sequelize";
 import PokemonModelInterface from "../../Model/Pokemon/Interface/PokemonModelInterface";
-import pokemonRepository from "../../Model/pokemonRepository";
+import pokemonRepository from "../../Model/Pokemon/pokemonRepository";
 
 const createPokemonService = async (
     pokemon: Partial<PokemonModelInterface>,

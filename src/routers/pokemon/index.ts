@@ -14,4 +14,6 @@ pokemonRouter.patch('/pokemon/me/:id', authUser, pokemonController.updatePokemon
 
 pokemonRouter.delete('/pokemon/me/:id', authUser, pokemonController.destroyPokemon);
 
+pokemonRouter.get('/pokemons/sales/:id', pokemonController.getSalesPokemons);
+
 export default pokemonRouter;

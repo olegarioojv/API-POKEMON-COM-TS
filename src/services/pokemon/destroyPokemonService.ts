@@ -1,4 +1,4 @@
-import pokemonRepository from "../../Model/pokemonRepository"
+import pokemonRepository from "../../Model/Pokemon/pokemonRepository"
 
 const destroy = async (id: number): Promise<boolean> => {
     try {

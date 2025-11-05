@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import pokemonRepository from "../../Model/pokemonRepository";
+import pokemonRepository from "../../Model/Pokemon/pokemonRepository";
 import updatePokemonService from "../../services/pokemon/updatePokemonService";
 import destroyPokemonService from "../../services/pokemon/destroyPokemonService";
 import createPokemonService from "../../services/pokemon/createPokemonService";
+import salesPokemonsService from "../../services/pokemon/salesPokemonsService";
 
 // Criar Pokémon
 const createPokemon = async (req: Request, res: Response): Promise<void> => {
@@ -131,10 +132,40 @@ const destroyPokemon = async (req: Request, res: Response): Promise<void> => {
     }
 };
 
+    const getSalesPokemons = async (req: Request, res:Response) => {
+        if(!req.params.id) {
+            res.status(400)
+            res.json({
+                message: "O id é obrigatorio"
+            })
+            return
+        }
+
+
+        const pokemons = await salesPokemonsService.getAllId(parseInt(req.params.id))
+
+        if(!pokemons) {
+            res.status(404)
+            res.json({
+                message: "Nenhum dados encontrado"
+            })
+            return
+        }
+        
+
+        res.json({
+            message: "Busca realizada com sucesso",
+            pokemons
+        })
+    }
+
+
+
 export default {
     createPokemon,
     getPokemons,
     getPokemon,
     updatePokemon,
     destroyPokemon,
+    getSalesPokemons
 };
