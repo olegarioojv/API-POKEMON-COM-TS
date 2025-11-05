@@ -1,6 +1,6 @@
 import ValidPayLoadAuthInterface from "../../Model/User/interface/ValidPayLoadAuthInterface";
 import UserModelInterface from "../../Model/User/interface/UserModelInterface";
-import userRepository from "../../Model/userRepository";
+import userRepository from "../../Model/User/userRepository";
 import bcrypt from "bcrypt";
 
 // Função para validar se o payload é válido

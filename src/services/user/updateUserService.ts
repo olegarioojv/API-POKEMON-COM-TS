@@ -1,5 +1,5 @@
 import UserModelInterface from "../../Model/User/interface/UserModelInterface";
-import userRepository from "../../Model/userRepository";
+import userRepository from "../../Model/User/userRepository";
 
 const updateUser = async (user: Partial<UserModelInterface>, id: number) => {
     try {

@@ -1,5 +1,5 @@
 import ValidPayLoadAuthInterface from "../../Model/User/interface/ValidPayLoadAuthInterface";
-import userRepository from "../../Model/userRepository";
+import userRepository from "../../Model/User/userRepository";
 import UserModelInterface from "../../Model/User/interface/UserModelInterface";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";

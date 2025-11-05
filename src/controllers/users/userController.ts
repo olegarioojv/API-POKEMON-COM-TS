@@ -3,7 +3,7 @@ import authUserService from "../../services/user/authUserService";
 import destroyUserService from "../../services/user/destroyUserService";
 import updateUserService from "../../services/user/updateUserService";
 import createUserService from "../../services/user/createUserService";
-import userRepository from "../../Model/userRepository";
+import userRepository from "../../Model/User/userRepository";
 
 const createUser = async (req: Request, res: Response): Promise<void> => {
     try {

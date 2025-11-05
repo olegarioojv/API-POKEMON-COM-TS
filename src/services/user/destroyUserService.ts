@@ -1,4 +1,4 @@
-import userRepository from "../../Model/userRepository";
+import userRepository from "../../Model/User/userRepository";
 
 const destroy = async (id: number): Promise<boolean> => {
     try {

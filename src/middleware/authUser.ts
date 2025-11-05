@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import userRepository from '../Model/userRepository';
+import userRepository from '../Model/User/userRepository';
 import UserModelInterface from '../Model/User/interface/UserModelInterface';
 
 declare global {

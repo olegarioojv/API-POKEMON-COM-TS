@@ -1,5 +1,5 @@
-import User from "./User/User";
-import UserModelInterface from "./User/interface/UserModelInterface";
+import User from "./User";
+import UserModelInterface from "./interface/UserModelInterface";
 
 const create = async (user: Partial<UserModelInterface>): Promise<UserModelInterface> => {
     try {
