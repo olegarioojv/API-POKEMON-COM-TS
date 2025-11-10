@@ -21,7 +21,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkdpZ2lAZW1haWwuY29tIiwiaWQiOjUsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYyMjk2NzIyLCJleHAiOjE3NjIzMDAzMjJ9.fQicSbhoEvB8vpyFdG0xvZbj7XqiOQ6ppf8LopF7CKc",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkdpZ2lAZW1haWwuY29tIiwiaWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYyODAzNTEyLCJleHAiOjE3NjI4MDcxMTJ9.r4a6q44cEFeuC17oX_ENHkkOV-0t-Vq0y_JJ49oPB4M",
 											"type": "string"
 										}
 									]
@@ -30,7 +30,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"cxcx\",\r\n    \"price\": \"50,22\",\r\n    \"nature\": \"Calm\",\r\n    \"tipo\": \"Metal\",\r\n    \"sexo\": \"F\",\r\n    \"level\": 50\r\n}\r\n",
+									"raw": "{\r\n    \"name\": \"Pikachu\",\r\n    \"price\": 50.66,\r\n    \"nature\": \"Calm\",\r\n    \"tipo\": \"Metal\",\r\n    \"sexo\": \"F\",\r\n    \"level\": 50\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -103,7 +103,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkdpZ2lAZW1haWwuY29tIiwiaWQiOjUsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYyODAyNzkwLCJleHAiOjE3NjI4MDYzOTB9.63nF902sbd0IlDFRjVg79PfKWKlvTZV1rTCq8I1kx78",
 											"type": "string"
 										}
 									]
@@ -228,7 +228,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkdpZ2lAZW1haWwuY29tIiwiaWQiOjEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYyODAzNTEyLCJleHAiOjE3NjI4MDcxMTJ9.r4a6q44cEFeuC17oX_ENHkkOV-0t-Vq0y_JJ49oPB4M",
 											"type": "string"
 										}
 									]
@@ -237,7 +237,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"Charizard\"\r\n}",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Pikachu\",\r\n  \"nickname\": \"GiGiMega\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -257,6 +257,161 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "NOTIFY",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"data\": {\r\n    \"external_reference\": \"63593af2-1299-4233-9379-0ecafd1c00b2\",\r\n    \"status\": \"approved\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/order/notify",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"order",
+										"notify"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ORDERS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9sZWdhcmlvby5kZXZAZ21haWwuY29tIiwiaWQiOjIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYyODA0ODE5LCJleHAiOjE3NjI4MDg0MTl9.jCjRADraqy6mDu734t4i0D51YpXnVYyy76XCq24EDeE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "REFERENCE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9sZWdhcmlvby5kZXZAZ21haWwuY29tIiwiaWQiOjIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYyODA0ODE5LCJleHAiOjE3NjI4MDg0MTl9.jCjRADraqy6mDu734t4i0D51YpXnVYyy76XCq24EDeE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/order/63593af2-1299-4233-9379-0ecafd1c00b2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"order",
+										"63593af2-1299-4233-9379-0ecafd1c00b2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ORDER UPDATE",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9sZWdhcmlvby5kZXZAZ21haWwuY29tIiwiaWQiOjIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYyODA0ODE5LCJleHAiOjE3NjI4MDg0MTl9.jCjRADraqy6mDu734t4i0D51YpXnVYyy76XCq24EDeE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"approved\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/order/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"order",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -268,7 +423,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTHVjYXJpbyIsImlhdCI6MTc2MTgzNDIzOSwiZXhwIjoxNzYxODM3ODM5fQ.wQtn8deHVRWkQKNzcdAOwTcN4vS3_NKRdNoWUdkmU4A",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -283,7 +438,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \" Gigi\",\r\n  \"email\": \"Gigi@email.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n  \"name\": \" João Victor\",\r\n  \"email\": \"olegarioo.dev@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -311,7 +466,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"Gigi@email.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"email\": \"olegarioo.dev@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

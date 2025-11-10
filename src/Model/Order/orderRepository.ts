@@ -68,6 +68,19 @@ const orderExist = async (name: string, userId: number): Promise<boolean> => {
   }
 };
 
+const findByReference = async (reference: string): Promise<OrderModelInterface | null> => {
+    try {
+        const order = await Order.findOne({
+            where: {
+                reference
+            }
+        });
+        return order;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
 
 export default {
     create,
@@ -76,4 +89,5 @@ export default {
     update,
     destroy,
     orderExist,
+    findByReference
 };

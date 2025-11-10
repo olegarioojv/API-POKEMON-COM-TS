@@ -5,6 +5,7 @@ import updateUserService from "../../services/user/updateUserService";
 import createUserService from "../../services/user/createUserService";
 import userRepository from "../../Model/User/userRepository";
 
+
 const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
         const validPayLoad = createUserService.validPayLoad(req.body);
@@ -103,6 +104,7 @@ const getUsers = async (req: Request, res: Response): Promise<void> => {
         res.status(200)
         res.json({
             message: "Usuários obtidos com sucesso",
+            total: users.length,
             users
         });
     } catch (error: any) {
@@ -152,6 +154,24 @@ const updateUser = async (req: Request, res: Response): Promise<void> => {
     }
 };
 
+
+const getUserAdmin = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const email = req.params.email
+        const user = await userRepository.findByEmail(email)
+
+        res.json({
+            user
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500)
+        res.json({
+            message: "houve um erro interno"
+        })
+    }
+}
+
 export default {
     createUser,
     authUser,
@@ -159,4 +179,5 @@ export default {
     getUsers,
     destroyUser,
     updateUser,
+    getUserAdmin
 };

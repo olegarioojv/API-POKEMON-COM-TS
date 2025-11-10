@@ -1,6 +1,5 @@
 import OrderValidPayLoadInterface from "../../Model/Order/interface/OrderValidPayLoadInterface"
 import OrderModelInterface from "../../Model/Order/interface/OrderModelInterface"
-import { Order } from "sequelize"
 import orderRepository from "../../Model/Order/orderRepository"
 
 
