@@ -132,9 +132,4 @@ Licença padrão do repositório (ver `package.json`).
 
 ---
 
-Se quiser, posso também:
 
-- Gerar exemplos automáticos de requests para cada rota (listando verbos e payloads) lendo os controllers/routers.
-- Adicionar badges (build/coverage) ou instruções de deploy.
-
-Diga se quer que eu inclua endpoints detalhados extraídos automaticamente dos arquivos de rota/controllers.
